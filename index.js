@@ -75,7 +75,9 @@ app.post('/', async function (req, res) {
             )
         
         if (result = "result"){
-            sendNote(lead_id, 'Импорт контактов в список рассылок "'+ name_ids[list.replace(',','')] +'" завершён')
+            if (list){
+                sendNote(lead_id, 'Импорт контактов в список рассылок "'+ name_ids[list.replace(',','')] +'" завершён')
+            }
             sendNote(lead_id, 'Импорт контактов в список рассылок ".amoCRM. Проиграл: остальные" завершён')
             sendNote(lead_id, 'Импорт контактов в список рассылок ".amoCRM. Проиграл: все причины" завершён')
         }else{

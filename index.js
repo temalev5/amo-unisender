@@ -71,6 +71,11 @@ app.post('/', async function (req, res) {
             list += ","
         }
 
+        if (!info.contact.custom_fields_values){
+            sendNote(lead_id, 'Ошибка импорта контакта в Unisender')
+            return
+        }
+
         let email = info.contact.custom_fields_values.find(f=>f.field_id==59222)
         if (!email){
             sendNote(lead_id, 'Ошибка импорта контакта в Unisender')

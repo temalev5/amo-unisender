@@ -34,6 +34,9 @@ const lists_ids = {
     "5206560":"20577805",
     "1536543":"20577805",
 }
+
+const pipeline_ids = ['786568','804619','912136','1005492','1379250','826213']
+
 // "Не заинтересован" - 1536546
 // "Изменились планы" - 1536558
 // "Ушли к конкурентам" -  1536561 : 20502070
@@ -65,7 +68,7 @@ app.post('/', async function (req, res) {
         }
     }
     let info = await getPhone(lead_id)
-    if (info.lead.status_id === 143){
+    if (info.lead.status_id === 143 && pipeline_ids.findIndex(p=> p == info.lead.pipeline_id) > -1){
         let list = lists_ids[info.lead.loss_reason_id]
         if (list){
             list += ","

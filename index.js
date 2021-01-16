@@ -70,8 +70,14 @@ app.post('/', async function (req, res) {
         if (list){
             list += ","
         }
+
+        let email = info.contact.custom_fields_values.find(f=>f.field_id==59222)
+        if (!email){
+            return
+        }
+
         let result = await subscribe(list, 
-            info.contact.custom_fields_values.find(f=>f.field_id==59222).values[0].value,
+            email.values[0].value,
             info.contact.name
             )
         

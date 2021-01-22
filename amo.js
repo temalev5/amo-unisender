@@ -1,7 +1,14 @@
 const AmoCRM = require( 'amocrm-js' );
 const mongoose = require("mongoose")
+const mongodb_secret = process.env.mongodb_secret
 
-mongoose.connect("mongodb+srv://tasa:Zeleboba991106@cluster0.okx1n.mongodb.net/codabra?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
+const amo_client_id = process.env.amo_client_id
+const amo_client_secret = process.env.amo_client_secret
+const amo_redirect_uri = process.env.amo_redirect_uri
+const amo_code = process.env.amo_code
+
+
+mongoose.connect(mongodb_secret, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(()=>{
           console.log("Mongoose connected")})
           .catch((err)=>{console.log(err)})
@@ -21,10 +28,10 @@ const crm = new AmoCRM({
       описаны на https://www.amocrm.ru/developers/content/oauth/step-by-step)
     */
     auth: {
-      client_id: '7cb9bf4d-74e1-4a7a-8621-9dec26fcfa53', // ID интеграции
-      client_secret: 'MrlHjVli9sA6BzLRKdyOu9PGehCFyD5HSeDH6dzAg28OXfsSJ06xjitedsMxskwz', // Секретный ключ
-      redirect_uri: 'https://codabra-discord-new.herokuapp.com/', // Ссылка для перенаправления
-      code: 'def502006fbd256adc289c61aecb82155dd32f79f0826587de0ad1623b8c4731e7c8227a1ad588a9d38ae4107483821498f0a15d5ed70ed2fa1c0a9ca6c69f4b9670eb15166bcee99e4f88e7aa8c642fcbe8bddd0a72fa3ef9a16c462d7554c0d8cf1ec9594236a7cc70aa04b94b8456aec1b5045f9555e9cdef065491205604b8f4a02ba0a823ab34ac58fa23d9e717f42e33fc05c5655cd4940532365c3cffb897ad0c40be0df3a0239b60d50087f7f6c5deec162893f3083890f0ce1e1bd43453645189c55fbd40e13579fb1ee88a236c7c5959381472af8e82fcaec15804f1ac2143b113a353934885448fcecf07622c51ceb751541a40b5f12cbba67c70c9d26ec1013dd037facae85bdcf82074700af95eeb7acfd2081d29ca25af7ad8de7fe69fae134ac32ed541c83bec70a9080eea3efd6e5457211c12b43bb5aed9723622260cfbc8c79972d42a768200d6bc9d53dd60d17a12c1a1e067bbdf4db81e57c83880f7901f559fef5404e4db0fb2b7153972b842f707c3d97ea8c505d3b625834ab47439524c7e17d4528a8842cb47bef37da6c05fc6b7a4a8028c7041554628ab340eee31dbce87cf8d3fcb26dc5bbf4c50d6befef994b1f3d699ffe6e0caf7f472cd3b52fda45dfa2306f645f360cc77c1' // Код авторизации
+      client_id: amo_client_id, // ID интеграции
+      client_secret: amo_client_secret, // Секретный ключ
+      redirect_uri: amo_redirect_uri, // Ссылка для перенаправления
+      code: amo_code // Код авторизации
     },
 });
 

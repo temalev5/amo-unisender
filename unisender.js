@@ -1,6 +1,6 @@
 const https = require('https');
 
-const KEY = '6rxxp4rgs5i7srf5ic9xq5riuscucpor5nsyfs6e'
+const KEY = process.env.key
 
 let buffer = [];
 

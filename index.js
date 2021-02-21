@@ -62,7 +62,7 @@ app.post('/', async function (req, res) {
     res.send('OK')
     let lead_id = {};
     for (param in req.body){
-        if (param = 'leads[status][0][id]'){
+        if (param == 'leads[status][0][id]'){
             lead_id = req.body[param]
             break;
         }
